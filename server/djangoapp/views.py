@@ -19,8 +19,6 @@ from .restapis import get_request, analyze_review_sentiments, post_review
 logger = logging.getLogger(__name__)
 
 
-# Create your views here.
-
 # Create a `login_request` view to handle sign in request
 @csrf_exempt
 def login_user(request):
@@ -56,13 +54,10 @@ def logout_request(request):
     else:
         return JsonResponse({'error': 'Only POST requests are allowed for logout'}, status=405)
 
-
-
 # Create a `registration` view to handle sign up request
 @csrf_exempt
 def registration(request):
     context = {}
-
     data = json.loads(request.body)
     username = data['userName']
     password = data['password']
@@ -91,7 +86,6 @@ def registration(request):
         data = {"userName":username,"error":"Already Registered"}
         return JsonResponse(data)
 
-#Update the `get_dealerships` render list of dealerships all by default, particular state if state is passed
 def get_dealerships(request, state="All"):
     if(state == "All"):
         endpoint = "/fetchDealers"
@@ -132,7 +126,6 @@ def add_review(request):
     else:
         return JsonResponse({"status":403,"message":"Unauthorized"})
 
-#Get all cars
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
