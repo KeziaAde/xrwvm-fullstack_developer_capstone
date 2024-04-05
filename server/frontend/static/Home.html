@@ -6,9 +6,34 @@
   <link rel="stylesheet" href="static/bootstrap.min.css">
 <script>
 
-const logout = async (e) => {
-//Include the code for logout here.
+const logout = async () => {
+  let logout_url = `${window.location.origin}/djangoapp/logout`;
+  try {
+    const res = await fetch(logout_url, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username: sessionStorage.getItem('username') })
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const username = data.username;
+      sessionStorage.removeItem('username');
+      window.location.href = window.location.origin;
+      window.location.reload();
+      alert("Logging out " + username + "...");
+    } else {
+      throw new Error("Logout failed");
+    }
+  } catch (error) {
+    console.error("Error during logout:", error);
+    alert("An error occurred during logout");
+  }
 };
+
+
 
 let checkSession = ()=>{
   let curr_user = sessionStorage.getItem("username");
@@ -26,7 +51,7 @@ let checkSession = ()=>{
 </script>
 </head>
 <body onload="checkSession()">
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:beige; height: 1in;">
   <div class="container-fluid">
     <h2 style="padding-right: 5%;">Dealerships</h2>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +81,7 @@ let checkSession = ()=>{
   <img src="static/car_dealership.jpg" class="card-img-top" alt="...">
   <div class="banner">
     <h5>Welcome to our Dealerships!</h5>
-    <a href="/dealers" class="btn" style="background-color: aqua;margin:10px">View Dealerships</a>
+    <a href="/dealers" class="btn" style="background-color: olive; margin:10px">View Dealerships</a>
   </div>
 </div>
 </div>

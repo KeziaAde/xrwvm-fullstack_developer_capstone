@@ -28,13 +28,13 @@ img{
 }
 .details{
   font-size: 20px;
-  color: rgb(97, 64, 128);
+  color: olive;
   padding:20px;
 }
 
 .title{
   font-size: 20px;
-  background-color: rgb(97, 64, 128);
+  background-color: olive;
   color: white;
   text-align: center;
   margin:20px;
@@ -42,9 +42,14 @@ img{
 }
 
 .homepage_links{
-  color:  rgb(97, 64, 128);
+  color: olive;
   padding: 25%;
   font-size: larger;
+  }
+
+a.contact_link{
+  color: olive;
+  font-size: medium;
   }
 
 .loginlink{
@@ -116,11 +121,7 @@ img{
 }
 
 .img_icon {
-  align-self: center;
-    width:40px;
-    background-color:#0C9;
-    color:#FFF;
-    border-radius:50px;
-    text-align:center;
-    box-shadow: 2px 2px 3px #999;  
+  border-radius:50px;
+  text-align:center;
+  box-shadow: 2px 2px 3px #999;  
 }
